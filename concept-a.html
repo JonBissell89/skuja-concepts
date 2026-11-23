@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Skuja Design Studio — Concept A · Organic Modern</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..600,100&family=Figtree:wght@400;500;600&display=swap">
+<style>
+/* Layout: soft two-column rhythm, arched photo frames, linen bands alternating with a moss band for saunas */
+:root{
+  --linen:#F3EEE5; --paper:#FBF8F2; --walnut:#2F241C; --bark:#5C4A3C; --olive:#7D7A4C; --olive-deep:#5E5C36; --clay:#B88A63; --moss:#3E4433; --line:#DDD3C3;
+  --display:"Fraunces", "Iowan Old Style", Georgia, serif; --body:"Figtree", "Helvetica Neue", Arial, sans-serif;
+  --r-lg:28px; --r-md:18px; --gut:max(16px, env(safe-area-inset-left,0px));
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--linen);color:var(--walnut);font:17px/1.65 var(--body);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--olive-deep);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:380;font-variation-settings:"SOFT" 100,"opsz" 96;letter-spacing:-.01em;line-height:1.08;margin:0;text-wrap:balance}
+.eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--olive-deep);font-weight:600}
+.btn{display:inline-flex;align-items:center;gap:.6em;padding:.95em 1.6em;border-radius:999px;background:var(--walnut);color:var(--paper);text-decoration:none;font-weight:600;font-size:.95rem;transition:background .25s, transform .25s}
+.btn:hover{background:var(--olive-deep);transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--walnut);box-shadow:inset 0 0 0 1.5px var(--walnut)}
+.btn.ghost:hover{background:var(--walnut);color:var(--paper)}
+.skip{position:absolute;left:-999px}.skip:focus{left:16px;top:16px;background:var(--paper);padding:8px 12px;z-index:99}
+
+/* header */
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--linen) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s}
+header.scrolled{border-color:var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;height:78px}
+.logo img{height:44px;width:auto;mix-blend-mode:multiply}
+.nav ul{display:flex;gap:34px;list-style:none;margin:0;padding:0}
+.nav ul a{text-decoration:none;font-size:.95rem;font-weight:500;color:var(--bark)}
+.nav ul a:hover{color:var(--walnut)}
+.menu-btn{display:none;background:none;border:0;padding:10px;cursor:pointer;color:var(--walnut)}
+.menu-btn span{display:block;width:24px;height:2px;background:currentColor;margin:5px 0;border-radius:2px;transition:transform .3s, opacity .3s}
+.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.drawer{display:none}
+
+/* hero */
+.hero{padding:56px 0 96px}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center}
+.hero h1{font-size:clamp(2.6rem,5.4vw,4.6rem);margin:18px 0 24px}
+.hero h1 em{font-style:italic;color:var(--olive-deep)}
+.hero p.lede{font-size:1.15rem;color:var(--bark);max-width:34em;margin:0 0 34px}
+.ask{background:var(--paper);border-radius:var(--r-lg);padding:26px 26px 22px;box-shadow:0 1px 0 var(--line), 0 30px 60px -40px rgba(47,36,28,.35)}
+.ask h2{font-size:1.35rem;margin-bottom:14px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+.chip{border:1.5px solid var(--line);background:var(--linen);border-radius:999px;padding:.55em 1.05em;font:500 .92rem var(--body);color:var(--walnut);cursor:pointer;transition:all .2s;text-decoration:none}
+.chip:hover,.chip[aria-pressed="true"]{border-color:var(--walnut);background:var(--walnut);color:var(--paper)}
+.ask-foot{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.88rem;color:var(--bark)}
+.hero-art{position:relative}
+.arch{border-radius:300px 300px var(--r-lg) var(--r-lg);overflow:hidden;aspect-ratio:4/5;background:var(--line)}
+.arch img{width:100%;height:100%;object-fit:cover}
+.badge{position:absolute;left:-36px;bottom:42px;width:168px;aspect-ratio:1;border-radius:50%;overflow:hidden;border:8px solid var(--linen)}
+.badge img{width:100%;height:100%;object-fit:cover}
+.note{position:absolute;right:-14px;top:38px;background:var(--paper);border-radius:var(--r-md);padding:12px 16px;font-size:.82rem;line-height:1.4;box-shadow:0 14px 30px -20px rgba(47,36,28,.5);max-width:190px}
+.note b{display:block;font-family:var(--display);font-weight:500;font-size:1rem}
+
+/* process */
+section{padding:104px 0}
+.process{background:var(--paper);border-radius:var(--r-lg) var(--r-lg) 0 0}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:32px;margin-bottom:56px;flex-wrap:wrap}
+.sec-head h2{font-size:clamp(2rem,3.6vw,3.1rem);max-width:15em}
+.sec-head p{max-width:30em;color:var(--bark);margin:0}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{counter-increment:s;padding:28px 24px 30px;border-radius:var(--r-md);background:var(--linen)}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--olive);color:var(--paper);font:500 1rem var(--display);margin-bottom:22px}
+.steps h3{font-size:1.3rem;margin-bottom:8px}
+.steps p{margin:0;font-size:.95rem;color:var(--bark)}
+.materials{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center;margin-top:96px}
+.materials figure{margin:0;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:5/4}
+.materials figure img{width:100%;height:100%;object-fit:cover}
+.materials h3{font-size:2rem;margin-bottom:16px}
+.woods{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+.wood{border-radius:14px;padding:58px 12px 12px;color:var(--paper);font-size:.85rem;font-weight:600}
+.wood small{display:block;font-weight:400;opacity:.85}
+.w1{background:linear-gradient(160deg,#5a3b27,#3b2618)}
+.w2{background:linear-gradient(160deg,#b8935f,#8d6a3e)}
+.w3{background:linear-gradient(160deg,#a8653f,#7a4529)}
+
+/* projects */
+.projects{background:var(--paper)}
+.pgrid{display:grid;grid-template-columns:repeat(12,1fr);gap:28px}
+.card{text-decoration:none;display:block}
+.card .ph{border-radius:var(--r-lg);overflow:hidden;background:var(--line)}
+.card img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.card:hover img{transform:scale(1.035)}
+.card h3{font-size:1.4rem;margin:18px 0 4px}
+.card p{margin:0;color:var(--bark);font-size:.93rem}
+.c1{grid-column:span 7}.c1 .ph{aspect-ratio:4/3}
+.c2{grid-column:span 5;margin-top:90px}.c2 .ph{aspect-ratio:4/5}
+.c3{grid-column:span 4}.c3 .ph{aspect-ratio:4/5}
+.c4{grid-column:span 4;margin-top:60px}.c4 .ph{aspect-ratio:4/5}
+.c5{grid-column:span 4}.c5 .ph{aspect-ratio:4/5}
+.tag{display:inline-block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--olive-deep);margin-top:16px}
+.center{text-align:center;margin-top:56px}
+
+/* sauna */
+.sauna{background:var(--moss);color:#EDE8DA;border-radius:var(--r-lg);margin:0 max(12px,env(safe-area-inset-left,0px))}
+.sauna .eyebrow{color:#C9C59A}
+.sauna-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.sauna h2{font-size:clamp(2.1rem,4vw,3.4rem);margin:16px 0 22px}
+.sauna p{color:#D6D1C0;max-width:32em}
+.sauna ul{list-style:none;padding:0;margin:28px 0 36px;display:grid;gap:12px}
+.sauna li{display:flex;gap:12px;align-items:baseline}
+.sauna li::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--clay);transform:translateY(-2px)}
+.sauna .btn{background:#EDE8DA;color:var(--moss)}
+.sauna .btn:hover{background:var(--clay);color:var(--walnut)}
+.sauna-photos{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.sauna-photos img{border-radius:var(--r-md);aspect-ratio:3/4;object-fit:cover;width:100%}
+.sauna-photos img:first-child{border-radius:200px 200px var(--r-md) var(--r-md);margin-top:48px}
+
+/* about */
+.about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:72px;align-items:center}
+.about figure{margin:0;border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/5}
+.about figure img{width:100%;height:100%;object-fit:cover}
+.about blockquote{margin:18px 0 26px;font-family:var(--display);font-size:clamp(1.5rem,2.5vw,2.1rem);line-height:1.3;font-weight:340;font-variation-settings:"SOFT" 100}
+.about p{color:var(--bark);max-width:34em}
+.sig{font-family:var(--display);font-style:italic;font-size:1.25rem;margin-top:24px}
+.sig small{display:block;font:500 .82rem var(--body);font-style:normal;color:var(--bark);letter-spacing:.04em}
+
+/* journal */
+.journal{background:var(--paper)}
+.jgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.post{text-decoration:none}
+.post .ph{border-radius:var(--r-md);overflow:hidden;aspect-ratio:3/2;margin-bottom:18px}
+.post img{width:100%;height:100%;object-fit:cover}
+.post time{font-size:.8rem;color:var(--olive-deep);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.post h3{font-size:1.3rem;margin:6px 0 8px}
+.post p{margin:0;color:var(--bark);font-size:.94rem}
+.sample{font-size:.78rem;color:var(--bark);margin-top:28px;text-align:center}
+
+/* cta */
+.cta{text-align:center;padding:120px 0}
+.cta h2{font-size:clamp(2.3rem,5vw,4.2rem);max-width:12em;margin:16px auto 22px}
+.cta p{color:var(--bark);max-width:36em;margin:0 auto 34px}
+.cta .chips{justify-content:center;max-width:640px;margin:0 auto 34px}
+
+footer{background:var(--walnut);color:#D9CFC0;padding:72px 0 36px;font-size:.93rem}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+footer h4{font:600 .78rem var(--body);letter-spacing:.14em;text-transform:uppercase;color:#A89B85;margin:0 0 14px}
+footer p{margin:0 0 6px}
+footer a{color:#F3EEE5;text-decoration:none}
+footer a:hover{text-decoration:underline}
+.fbrand{font-family:var(--display);font-size:1.6rem;color:#F3EEE5;line-height:1.2;font-variation-settings:"SOFT" 100}
+.legal{border-top:1px solid #4A3B2F;margin-top:56px;padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:#A89B85;font-size:.82rem}
+
+@media (max-width:980px){
+  .hero-grid,.sauna-grid,.about-grid,.materials{grid-template-columns:1fr;gap:44px}
+  .steps{grid-template-columns:1fr 1fr}
+  .jgrid{grid-template-columns:1fr 1fr}
+  .fgrid{grid-template-columns:1fr 1fr}
+  .badge{left:-8px;width:130px}
+}
+@media (max-width:760px){
+  body{font-size:16px}
+  .wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  .nav{height:66px}.logo img{height:36px}
+  .nav ul,.nav .btn{display:none}
+  .menu-btn{display:block}
+  .drawer{display:block;position:fixed;inset:66px 0 auto 0;background:var(--linen);padding:16px max(16px,env(safe-area-inset-left,0px)) 28px;border-bottom:1px solid var(--line);transform:translateY(-8px);opacity:0;visibility:hidden;transition:.25s}
+  .drawer.open{transform:none;opacity:1;visibility:visible}
+  .drawer a{display:block;padding:14px 0;border-bottom:1px solid var(--line);text-decoration:none;font-family:var(--display);font-size:1.5rem}
+  .drawer .btn{margin-top:22px;font-family:var(--body);font-size:1rem;border:0;justify-content:center;display:flex}
+  section{padding:72px 0}
+  .hero{padding:28px 0 64px}
+  .ask{padding:20px 18px}
+  .badge{display:none}.note{right:10px;top:auto;bottom:16px}
+  .steps,.jgrid,.woods{grid-template-columns:1fr}
+  .woods{grid-template-columns:repeat(3,1fr);gap:8px}.wood{padding:44px 8px 8px;font-size:.75rem}
+  .pgrid{grid-template-columns:1fr;gap:40px}
+  .c1,.c2,.c3,.c4,.c5{grid-column:auto;margin-top:0}
+  .sauna{margin:0 8px;border-radius:22px}
+  .sauna-photos img:first-child{margin-top:24px}
+  .fgrid{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header id="top">
+  <div class="wrap nav">
+    <a class="logo" href="#top" aria-label="Skuja Design Studio, home"><img src="img/logo.webp" alt="Skuja Design Studio" width="900" height="414"></a>
+    <nav aria-label="Main"><ul>
+      <li><a href="#work">Portfolio</a></li><li><a href="#sauna">Saunas</a></li><li><a href="#journal">Journal</a></li><li><a href="#about">About</a></li><li><a href="#start">Contact</a></li>
+    </ul></nav>
+    <a class="btn" href="/contact">Start a project</a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="drawer" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="drawer" id="drawer">
+    <a href="#work">Portfolio</a><a href="#sauna">Saunas</a><a href="#journal">Journal</a><a href="#about">About</a><a href="#start">Contact</a>
+    <a class="btn" href="/contact">Start a project</a>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Handmade in Wilmington, Vermont</span>
+      <h1>Furniture made slowly, <em>to be lived with</em> for generations.</h1>
+      <p class="lede">Dining tables, cabinetry, built-ins and Nordic saunas, designed with you and built by hand in solid hardwood.</p>
+      <div class="ask" role="group" aria-labelledby="ask-h">
+        <h2 id="ask-h">What would you like made?</h2>
+        <div class="chips">
+          <a class="chip" href="/contact?type=dining-table">Dining table</a>
+          <a class="chip" href="/contact?type=dining-chair">Dining chairs</a>
+          <a class="chip" href="/contact?type=cabinetry">Cabinetry</a>
+          <a class="chip" href="/contact?type=built-ins">Built-ins</a>
+          <a class="chip" href="/contact?type=sauna">Sauna</a>
+          <a class="chip" href="/contact?type=other">Something else</a>
+        </div>
+        <div class="ask-foot"><span>Six short steps · about 3 minutes</span><a class="btn" href="/contact">Start a project</a></div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="arch"><img src="img/round-table-2.webp" alt="Round walnut dining table on a black steel base in a sunlit room" width="1050" height="1400" fetchpriority="high"></div>
+      <div class="badge"><img src="img/walnut-edge-detail.webp" alt="Close-up of a hand-shaped walnut table edge" width="787" height="1400"></div>
+      <p class="note"><b>Round walnut table</b>Solid walnut top, blackened steel base</p>
+    </div>
+  </div>
+</section>
+
+<section class="process" aria-labelledby="proc-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">How a piece comes to be</span><h2 id="proc-h">From a conversation to an heirloom</h2></div>
+      <p>Every piece starts with how you live: the room, the people around the table, the way light falls. Then we choose the wood and build it to last.</p>
+    </div>
+    <ol class="steps">
+      <li><h3>Conversation</h3><p>You tell us what you need, the space, and a comfortable budget. We listen first.</p></li>
+      <li><h3>Design</h3><p>Sketches, dimensions and timber options, refined together until it feels right.</p></li>
+      <li><h3>Making</h3><p>Built by hand in our Vermont workshop with traditional joinery and careful finishing.</p></li>
+      <li><h3>Delivery</h3><p>Delivered and installed with care, then cared for over the years ahead.</p></li>
+    </ol>
+    <div class="materials">
+      <figure><img src="img/walnut-slab.webp" alt="A thick walnut slab being prepared on the workshop bench" loading="lazy" width="1050" height="1400"></figure>
+      <div>
+        <span class="eyebrow">Materials</span>
+        <h3>Solid hardwood, chosen board by board</h3>
+        <p>We build with solid timber and honest joinery: dovetailed drawers, hand-shaped edges, natural oil finishes. Size, species and complexity shape the price more than anything else, and we will always explain the trade-offs.</p>
+        <div class="woods" aria-label="Woods we often use">
+          <div class="wood w1">Walnut<small>Deep, warm brown</small></div>
+          <div class="wood w2">White oak<small>Light, strong grain</small></div>
+          <div class="wood w3">Cedar<small>Aromatic, for saunas</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="projects" id="work" aria-labelledby="work-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">Selected work</span><h2 id="work-h">Pieces made for real homes</h2></div>
+      <a class="btn ghost" href="/portfolio">View the full portfolio</a>
+    </div>
+    <div class="pgrid">
+      <a class="card c1" href="/portfolio/walnut-display-cabinet"><div class="ph"><img src="img/display-cabinet-front.webp" alt="Walnut and glass display cabinet with brass half-moon pulls" loading="lazy" width="1400" height="1050"></div><span class="tag">Cabinetry</span><h3>Walnut &amp; glass display cabinet</h3><p>Glass shelves, brass half-moon pulls, live-edge base</p></a>
+      <a class="card c2" href="/portfolio/walnut-closet"><div class="ph"><img src="img/closet-drawers.webp" alt="Walnut closet drawers with dovetail joinery and brass pulls" loading="lazy" width="1233" height="1400"></div><span class="tag">Built-ins</span><h3>Walnut closet built-ins</h3><p>Hand-cut dovetails, brass hardware</p></a>
+      <a class="card c3" href="/portfolio/oak-trestle-table"><div class="ph"><img src="img/trestle-dining-table.webp" alt="White oak trestle dining table beside large windows" loading="lazy" width="1050" height="1400"></div><span class="tag">Dining</span><h3>Oak trestle table</h3><p>White oak, pegged trestle base</p></a>
+      <a class="card c4" href="/portfolio/fluted-vanity"><div class="ph"><img src="img/fluted-vanity.webp" alt="Fluted white oak bathroom vanity with brass knobs" loading="lazy" width="1400" height="1050"></div><span class="tag">Cabinetry</span><h3>Fluted oak vanity</h3><p>Reeded fronts, brass knobs</p></a>
+      <a class="card c5" href="/portfolio/walnut-table"><div class="ph"><img src="img/walnut-table-1.webp" alt="Walnut table with a softly curved top and tapered legs" loading="lazy" width="1050" height="1400"></div><span class="tag">Dining</span><h3>Walnut table</h3><p>Curved top, tapered legs</p></a>
+    </div>
+  </div>
+</section>
+
+<section id="sauna" aria-labelledby="sauna-h" style="padding:0">
+  <div class="sauna" style="padding:96px 0">
+    <div class="wrap sauna-grid">
+      <div>
+        <span class="eyebrow">Custom Nordic saunas</span>
+        <h2 id="sauna-h">A drop of everyday luxury, built in cedar.</h2>
+        <p>We design and build custom saunas together with a team of Estonian sauna architects, bringing generations of Nordic sauna culture to Vermont backyards.</p>
+        <ul>
+          <li>Freestanding garden saunas and barrel saunas</li>
+          <li>Clear cedar interiors, benches and heaters chosen for you</li>
+          <li>A 1-on-1 call to answer every question first</li>
+        </ul>
+        <a class="btn" href="/contact?type=sauna">Plan your sauna</a>
+      </div>
+      <div class="sauna-photos">
+        <img src="img/sauna-cedar-exterior-1.webp" alt="Cedar gable sauna with a black side wall set among trees" loading="lazy" width="1050" height="1400">
+        <img src="img/sauna-cedar-interior-3.webp" alt="Cedar sauna interior with benches and a stone heater" loading="lazy" width="1050" height="1400">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about" aria-labelledby="about-h">
+  <div class="wrap about-grid">
+    <figure><img src="img/owner-workshop.webp" alt="Oleg Skuja working on a piece in the workshop" loading="lazy" width="1120" height="1400"></figure>
+    <div>
+      <span class="eyebrow" id="about-h">About the studio</span>
+      <blockquote>“Each piece is made to become a cherished heirloom, something your family lives with for generations.”</blockquote>
+      <p>Skuja Design Studio is a small furniture workshop in Wilmington, Vermont. From dining tables to cabinets and built-in storage, every piece is designed around the people who will use it and made with the finest materials and traditional techniques.</p>
+      <p class="sig">Oleg Skuja<small>Owner and maker</small></p>
+    </div>
+  </div>
+</section>
+
+<section class="journal" id="journal" aria-labelledby="j-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">Journal</span><h2 id="j-h">Notes from the workshop</h2></div>
+      <a class="btn ghost" href="/journal">Read the journal</a>
+    </div>
+    <div class="jgrid">
+      <a class="post" href="/journal"><div class="ph"><img src="img/workshop-build.webp" alt="A table frame clamped on the workbench during glue-up" loading="lazy" width="787" height="1400"></div><time>Process</time><h3>Glue-up day: building a table frame</h3><p>Why we take our time with joinery, and what happens under the clamps.</p></a>
+      <a class="post" href="/journal"><div class="ph"><img src="img/closet-builtin-2.webp" alt="Dovetailed walnut drawer box" loading="lazy" width="1233" height="1400"></div><time>Craft</time><h3>The case for hand-cut dovetails</h3><p>A small detail you will feel every time you open a drawer.</p></a>
+      <a class="post" href="/journal"><div class="ph"><img src="img/sauna-cedar-porch.webp" alt="Cedar sauna porch with a stool and striped mat" loading="lazy" width="1050" height="1400"></div><time>Saunas</time><h3>Why cedar for a sauna?</h3><p>Aroma, comfort to the touch, and how it ages outdoors.</p></a>
+    </div>
+    <p class="sample">Journal entries shown are examples of the format.</p>
+  </div>
+</section>
+
+<section class="cta" id="start" aria-labelledby="cta-h">
+  <div class="wrap">
+    <span class="eyebrow">Start a project</span>
+    <h2 id="cta-h">Tell us what you have in mind.</h2>
+    <p>A few short questions about the piece, your timing and a comfortable budget help us reply with useful ideas, including smaller options if they suit you better.</p>
+    <div class="chips">
+      <a class="chip" href="/contact?type=dining-table">Dining table</a><a class="chip" href="/contact?type=cabinetry">Cabinetry</a><a class="chip" href="/contact?type=built-ins">Built-ins</a><a class="chip" href="/contact?type=sauna">Sauna</a><a class="chip" href="/contact?type=other">Something else</a>
+    </div>
+    <a class="btn" href="/contact">Start a project</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div><p class="fbrand">Skuja Design Studio</p><p style="margin-top:12px">Custom furniture, cabinetry and Nordic saunas, handmade in Vermont.</p></div>
+      <div><h4>Visit</h4><p>874 Vermont Route 100 North</p><p>Wilmington, VT 05363</p></div>
+      <div><h4>Hours</h4><p>Mon 8–4 · Tue–Wed 9–4</p><p>Thu–Fri by appointment</p></div>
+      <div><h4>Contact</h4><p><a href="mailto:info@skujadesign.studio">info@skujadesign.studio</a></p><p><a href="https://www.instagram.com/skujadesign/">Instagram @skujadesign</a></p></div>
+    </div>
+    <div class="legal"><span>© 2026 Skuja Design Studio, LLC</span><a href="/privacy-policy">Privacy policy</a></div>
+  </div>
+</footer>
+<script>
+const h=document.querySelector('header'),b=document.querySelector('.menu-btn'),d=document.getElementById('drawer');
+addEventListener('scroll',()=>h.classList.toggle('scrolled',scrollY>8),{passive:true});
+function setMenu(o){b.setAttribute('aria-expanded',o);b.setAttribute('aria-label',o?'Close menu':'Open menu');d.classList.toggle('open',o)}
+b.addEventListener('click',()=>setMenu(b.getAttribute('aria-expanded')!=='true'));
+d.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+addEventListener('keydown',e=>{if(e.key==='Escape'){setMenu(false)}});
+</script>
+</body>
+</html>

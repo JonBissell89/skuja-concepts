@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skuja Homepage Concepts</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap">
+<style>
+/* Layout: a quiet review board — three equal columns, each a live desktop frame above a phone frame, then the reasoning beneath */
+:root{
+  --bg:#F4F3EF; --panel:#FFFFFF; --fg:#22211D; --muted:#6A675E; --line:#DEDBD3; --accent:#6C683A; --accent-ink:#FFFFFF; --frame:#1E1D1A;
+  --ui:"Manrope", "Helvetica Neue", Arial, sans-serif; --head:"Newsreader", Georgia, serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171714;--panel:#211F1C;--fg:#ECEAE3;--muted:#A6A398;--line:#36342F;--accent:#C7C28B;--accent-ink:#1A1A16;--frame:#000000;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#171714;--panel:#211F1C;--fg:#ECEAE3;--muted:#A6A398;--line:#36342F;--accent:#C7C28B;--accent-ink:#1A1A16;--frame:#000000;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:15px/1.6 var(--ui)}
+.page{max-width:1680px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:40px 72px}
+@media (min-width:760px){.page{padding-left:max(32px,env(safe-area-inset-left,0px));padding-right:max(32px,env(safe-area-inset-right,0px))}}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.kicker{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--muted)}
+h1,h2,h3{font-family:var(--head);font-weight:500;margin:0;text-wrap:balance;line-height:1.15}
+.intro{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:40px;align-items:end;margin-bottom:40px}
+.intro h1{font-size:clamp(2rem,3.6vw,3rem);margin-top:8px}
+.intro p{margin:14px 0 0;color:var(--muted);max-width:60ch}
+.steps{list-style:none;margin:0;padding:18px 20px;background:var(--panel);border:1px solid var(--line);border-radius:12px;display:grid;gap:8px;font-size:.9rem}
+.steps li{display:grid;grid-template-columns:22px 1fr;gap:8px}
+.steps b{color:var(--accent)}
+.board{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.col{display:flex;flex-direction:column;gap:18px;min-width:0}
+.head{display:flex;justify-content:space-between;align-items:start;gap:12px}
+.head h2{font-size:1.65rem}
+.head .letter{font:600 .75rem var(--ui);letter-spacing:.14em;color:var(--accent);text-transform:uppercase}
+.head p{margin:4px 0 0;color:var(--muted);font-size:.9rem}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--panel);color:var(--fg);font:600 .8rem var(--ui);padding:8px 12px;border-radius:8px;text-decoration:none;cursor:pointer;white-space:nowrap}
+.btn:hover{border-color:var(--fg)}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.screens{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:end;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}
+.desk{min-width:0}
+.desk .chrome{background:var(--frame);border-radius:8px 8px 0 0;height:16px;display:flex;align-items:center;gap:4px;padding:0 7px}
+.desk .chrome i{width:5px;height:5px;border-radius:50%;background:#5b5953}
+.scaler{position:relative;overflow:hidden;background:var(--line);border-radius:0 0 6px 6px}
+.scaler iframe{position:absolute;top:0;left:0;border:0;transform-origin:0 0;background:#fff}
+.phone{width:132px;padding:6px;background:var(--frame);border-radius:20px}
+.phone .scaler{border-radius:15px}
+.lbl{font-size:.7rem;color:var(--muted);margin-top:6px;text-align:center;letter-spacing:.06em;text-transform:uppercase}
+.swatches{display:flex;gap:6px;flex-wrap:wrap}
+.sw{width:30px;height:30px;border-radius:50%;border:1px solid var(--line)}
+.type{display:grid;gap:2px;margin-top:10px}
+.type span{font-size:.82rem;color:var(--muted)}
+.type .s1{font-size:1.35rem;color:var(--fg)}
+.block{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px}
+.block h3{font:600 .72rem var(--ui);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.block ul{margin:0;padding-left:18px;display:grid;gap:5px;font-size:.92rem}
+.pc{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pc ul{padding-left:16px}
+.pro h3{color:var(--accent)}
+.best{font-family:var(--head);font-size:1.15rem;line-height:1.4;margin:0}
+.compare{margin-top:56px}
+.compare h2{font-size:1.8rem;margin-bottom:16px}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;min-width:720px;font-size:.92rem}
+th,td{text-align:left;padding:14px 18px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:600;width:22%}
+.approve{margin-top:40px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px}
+.approve .block p{margin:0 0 10px;font-size:.95rem}
+.approve .block p:last-child{margin:0}
+.note{font-size:.82rem;color:var(--muted);margin-top:28px}
+/* lightbox */
+.lb[hidden]{display:none}
+.lb{position:fixed;inset:0;z-index:50;background:rgba(10,10,8,.86);display:flex;flex-direction:column;padding:calc(env(safe-area-inset-top,0px) + 14px) max(16px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 14px) max(16px,env(safe-area-inset-left,0px));gap:12px}
+.lb .bar{display:flex;justify-content:space-between;align-items:center;color:#ECEAE3;gap:12px;flex-wrap:wrap}
+.lb .bar h2{font-size:1.3rem;color:#ECEAE3}
+.seg{display:inline-flex;background:#2b2a26;border-radius:9px;padding:3px}
+.seg button{background:none;border:0;color:#cfccc2;font:600 .8rem var(--ui);padding:7px 12px;border-radius:7px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:#ECEAE3;color:#1a1a16}
+.lb .close{background:#ECEAE3;color:#1a1a16;border:0;font:600 .8rem var(--ui);padding:8px 14px;border-radius:8px;cursor:pointer}
+.lb .stage{flex:1;min-height:0;display:flex;justify-content:center;align-items:stretch}
+.lb .stage .scaler{border-radius:8px;height:100%;background:#fff}
+@media (max-width:1180px){.board{grid-template-columns:minmax(0,1fr)}.col{max-width:820px}.phone{width:170px}}
+@media (max-width:760px){.intro,.approve,.pc{grid-template-columns:1fr}.phone{width:112px}.screens{gap:10px;padding:10px}}
+@media (max-width:420px){.screens{grid-template-columns:1fr}.phone{width:150px;justify-self:center}}
+</style>
+
+<div class="page">
+  <header class="intro">
+<meta name="robots" content="noindex, nofollow">
+    <div>
+      <span class="kicker">Skuja Design Studio · Website redesign · Phase 2</span>
+      <h1>Three directions for the new homepage</h1>
+      <p>Each concept is a working homepage built with the studio's own photographs, shown live at desktop and phone size. Scroll inside any preview, open it full screen, and try the menu and the “Start a project” button. Nothing has been applied to the real site yet.</p>
+    </div>
+    <ol class="steps" aria-label="How to review">
+      <li><b>1</b><span>Open each concept full screen on your computer and on your phone.</span></li>
+      <li><b>2</b><span>Look at how your work is presented: does it feel like your furniture?</span></li>
+      <li><b>3</b><span>Pick one direction. Mixing details (a font, a section) from another is fine.</span></li>
+    </ol>
+  </header>
+
+  <div class="board">
+    <!-- A -->
+    <article class="col" aria-labelledby="ha">
+      <div class="head">
+        <div><span class="letter">Concept A</span><h2 id="ha">Organic Modern</h2><p>Warm, soft and inviting, like walking into the workshop.</p></div>
+        <div class="btns"><button class="btn" data-open="a">Enlarge</button><a class="btn primary" href="concept-a.html" target="_blank" rel="noopener">Full screen ↗</a></div>
+      </div>
+      <div class="screens">
+        <div class="desk"><div class="chrome"><i></i><i></i><i></i></div><div class="scaler" data-w="1440" data-h="900"><iframe src="concept-a.html" title="Concept A desktop preview" loading="lazy" tabindex="-1"></iframe></div><div class="lbl">Desktop · 1440</div></div>
+        <div><div class="phone"><div class="scaler" data-w="390" data-h="844"><iframe src="concept-a.html" title="Concept A phone preview" loading="lazy" tabindex="-1"></iframe></div></div><div class="lbl">Phone · 390</div></div>
+      </div>
+      <div class="block"><h3>Design principles</h3><ul><li>Linen and walnut palette taken from the logo's olive and the wood itself</li><li>Arched and rounded photo frames echo hand-shaped edges</li><li>Tells the process: conversation, design, making, delivery</li><li>The inquiry starts right in the hero with project-type chips</li></ul></div>
+      <div class="block"><h3>Look and type</h3>
+        <div class="swatches" aria-label="Palette"><span class="sw" style="background:#F3EEE5" title="Linen"></span><span class="sw" style="background:#2F241C" title="Walnut"></span><span class="sw" style="background:#7D7A4C" title="Olive"></span><span class="sw" style="background:#B88A63" title="Clay"></span><span class="sw" style="background:#3E4433" title="Moss"></span></div>
+        <div class="type"><span class="s1" style="font-family:Georgia,serif">Fraunces, soft serif</span><span>Figtree for reading text</span></div></div>
+      <div class="pc"><div class="block pro"><h3>Strengths</h3><ul><li>Most approachable; lowers the barrier to ask</li><li>Explains materials and pricing gently</li><li>Works with everyday phone photos</li></ul></div><div class="block"><h3>Tradeoffs</h3><ul><li>Less dramatic; work shares space with text</li><li>Warm-earthy look is common among makers</li></ul></div></div>
+      <div class="block"><h3>Best if</h3><p class="best">you want first-time clients to feel welcome and comfortable sharing a budget.</p></div>
+    </article>
+
+    <!-- B -->
+    <article class="col" aria-labelledby="hb">
+      <div class="head">
+        <div><span class="letter">Concept B</span><h2 id="hb">Architectural Editorial</h2><p>Bold and confident, like a feature in an architecture magazine.</p></div>
+        <div class="btns"><button class="btn" data-open="b">Enlarge</button><a class="btn primary" href="concept-b.html" target="_blank" rel="noopener">Full screen ↗</a></div>
+      </div>
+      <div class="screens">
+        <div class="desk"><div class="chrome"><i></i><i></i><i></i></div><div class="scaler" data-w="1440" data-h="900"><iframe src="concept-b.html" title="Concept B desktop preview" loading="lazy" tabindex="-1"></iframe></div><div class="lbl">Desktop · 1440</div></div>
+        <div><div class="phone"><div class="scaler" data-w="390" data-h="844"><iframe src="concept-b.html" title="Concept B phone preview" loading="lazy" tabindex="-1"></iframe></div></div><div class="lbl">Phone · 390</div></div>
+      </div>
+      <div class="block"><h3>Design principles</h3><ul><li>Poster-scale condensed type over full-bleed photography</li><li>Strict 12-column grid used asymmetrically, like magazine spreads</li><li>A numbered project index with image previews on hover</li><li>Figure captions name materials, like a design publication</li></ul></div>
+      <div class="block"><h3>Look and type</h3>
+        <div class="swatches" aria-label="Palette"><span class="sw" style="background:#EEEDE8" title="Stone"></span><span class="sw" style="background:#121210" title="Ink"></span><span class="sw" style="background:#8E8C84" title="Concrete"></span><span class="sw" style="background:#8A8450" title="Olive"></span><span class="sw" style="background:#F8F7F3" title="Paper"></span></div>
+        <div class="type"><span class="s1" style="font-family:'Arial Narrow',Arial,sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:-.01em">Archivo Condensed</span><span>Newsreader text, IBM Plex Mono captions</span></div></div>
+      <div class="pc"><div class="block pro"><h3>Strengths</h3><ul><li>Most memorable and distinctive</li><li>Signals design ambition to architects and designers</li><li>Index scales well as the portfolio grows</li></ul></div><div class="block"><h3>Tradeoffs</h3><ul><li>Needs strong landscape hero photos</li><li>Can feel less personal to homeowners</li></ul></div></div>
+      <div class="block"><h3>Best if</h3><p class="best">you want to attract architects, designers and larger commissions.</p></div>
+    </article>
+
+    <!-- C -->
+    <article class="col" aria-labelledby="hc">
+      <div class="head">
+        <div><span class="letter">Concept C</span><h2 id="hc">Quiet Luxury Gallery</h2><p>Calm and spacious, like a private gallery viewing.</p></div>
+        <div class="btns"><button class="btn" data-open="c">Enlarge</button><a class="btn primary" href="concept-c.html" target="_blank" rel="noopener">Full screen ↗</a></div>
+      </div>
+      <div class="screens">
+        <div class="desk"><div class="chrome"><i></i><i></i><i></i></div><div class="scaler" data-w="1440" data-h="900"><iframe src="concept-c.html" title="Concept C desktop preview" loading="lazy" tabindex="-1"></iframe></div><div class="lbl">Desktop · 1440</div></div>
+        <div><div class="phone"><div class="scaler" data-w="390" data-h="844"><iframe src="concept-c.html" title="Concept C phone preview" loading="lazy" tabindex="-1"></iframe></div></div><div class="lbl">Phone · 390</div></div>
+      </div>
+      <div class="block"><h3>Design principles</h3><ul><li>Navigation reduced to three quiet words</li><li>One work at a time, with arrow, keyboard and swipe controls</li><li>Museum-label captions and generous white space</li><li>Gentle fades instead of decoration</li></ul></div>
+      <div class="block"><h3>Look and type</h3>
+        <div class="swatches" aria-label="Palette"><span class="sw" style="background:#F7F6F3" title="Wall"></span><span class="sw" style="background:#1D1C1A" title="Ink"></span><span class="sw" style="background:#7F7B73" title="Mute"></span><span class="sw" style="background:#E3E0DA" title="Hairline"></span><span class="sw" style="background:#6E5B45" title="Bronze"></span></div>
+        <div class="type"><span class="s1" style="font-family:Garamond,Georgia,serif;font-weight:300">Cormorant, light serif</span><span>Jost, spaced small capitals</span></div></div>
+      <div class="pc"><div class="block pro"><h3>Strengths</h3><ul><li>The photographs get all the attention</li><li>Feels high-end and timeless</li><li>Simplest to keep looking good</li></ul></div><div class="block"><h3>Tradeoffs</h3><ul><li>Less room to explain process and pricing</li><li>Depends on excellent, consistent photos</li></ul></div></div>
+      <div class="block"><h3>Best if</h3><p class="best">you want the work to speak for itself and position the studio at the top of the market.</p></div>
+    </article>
+  </div>
+
+  <section class="compare" aria-labelledby="cmp">
+    <h2 id="cmp">Side by side</h2>
+    <div class="tbl"><table>
+      <thead><tr><th scope="col">What matters</th><th scope="col">A · Organic Modern</th><th scope="col">B · Architectural Editorial</th><th scope="col">C · Quiet Luxury Gallery</th></tr></thead>
+      <tbody>
+        <tr><td>First impression</td><td>Warm, welcoming, handmade</td><td>Bold, confident, design-led</td><td>Calm, exclusive, refined</td></tr>
+        <tr><td>How work is shown</td><td>Rounded cards with materials</td><td>Large spreads and a numbered index</td><td>One work at a time, oversized</td></tr>
+        <tr><td>Path to “Start a project”</td><td>In the hero, with category chips</td><td>Headline button and a closing poster</td><td>Quiet link up top, a calm closing invitation</td></tr>
+        <tr><td>Photos it needs</td><td>Any good photo works</td><td>Wide, high-quality hero shots</td><td>Consistent, carefully lit photos</td></tr>
+        <tr><td>Room to explain budget and process</td><td>Most</td><td>Some</td><td>Least</td></tr>
+        <tr><td>Saunas</td><td>A warm moss-green feature band</td><td>A dark full-bleed feature story</td><td>A single quiet room</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="approve" aria-labelledby="ap">
+    <div class="block"><h3 id="ap">Approval</h3><p><strong>Choose one direction.</strong> Once approved, it becomes the visual system for the whole site: portfolio and project pages, saunas, journal, the guided inquiry, the shop (if switched on) and the emails customers receive.</p><p>Until then, the working site and owner dashboard use a neutral style, so no decision is locked in early.</p></div>
+    <div class="block"><h3>What stays the same in every direction</h3><p>Your existing page addresses (Home, Portfolio, Sauna, About, Contact), the custom sauna offering, your own photographs and words, and the six-step project inquiry with budget guidance you control from the dashboard.</p></div>
+  </section>
+  <p class="note">Journal entries in the concepts are format examples. No prices or products are shown, and nothing is for sale in these mockups. Project names are working titles to confirm with the studio.</p>
+</div>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-labelledby="lbt">
+  <div class="bar"><h2 id="lbt">Concept</h2>
+    <div class="seg" role="group" aria-label="Preview size"><button data-v="d" aria-pressed="true">Desktop</button><button data-v="m" aria-pressed="false">Phone</button></div>
+    <button class="close">Close</button></div>
+  <div class="stage"><div class="scaler" id="lbs"><iframe id="lbf" title="Enlarged concept preview"></iframe></div></div>
+</div>
+
+<script>
+const names={a:'Concept A · Organic Modern',b:'Concept B · Architectural Editorial',c:'Concept C · Quiet Luxury Gallery'};
+function fit(s,w,h){const W=s.clientWidth;const k=W/w;const f=s.querySelector('iframe');f.style.width=w+'px';f.style.height=h+'px';f.style.transform='scale('+k+')';s.style.height=(h*k)+'px';}
+const scalers=[...document.querySelectorAll('.board .scaler')];
+function fitAll(){scalers.forEach(s=>fit(s,+s.dataset.w,+s.dataset.h))}
+new ResizeObserver(fitAll).observe(document.body);fitAll();
+// lightbox
+const lb=document.getElementById('lb'),lbs=document.getElementById('lbs'),lbf=document.getElementById('lbf'),stage=lb.querySelector('.stage');let cur='a',view='d',opener=null;
+function layout(){const w=view==='d'?1440:390,h=view==='d'?900:844;const sw=stage.clientWidth,sh=stage.clientHeight;const k=Math.min(sw/w,sh/h,1);lbs.style.width=(w*k)+'px';lbs.style.height=(h*k)+'px';lbf.style.width=w+'px';lbf.style.height=h+'px';lbf.style.transform='scale('+k+')';lbf.style.transformOrigin='0 0';lbf.style.border='0';lbs.style.position='relative';lbs.style.overflow='hidden';}
+function openLb(c,btn){cur=c;opener=btn;lb.hidden=false;document.getElementById('lbt').textContent=names[c];lbf.src='concept-'+c+'.html';layout();lb.querySelector('.close').focus();}
+function closeLb(){lb.hidden=true;lbf.src='about:blank';opener&&opener.focus();}
+document.querySelectorAll('[data-open]').forEach(b=>b.addEventListener('click',()=>openLb(b.dataset.open,b)));
+lb.querySelector('.close').addEventListener('click',closeLb);
+lb.querySelectorAll('.seg button').forEach(b=>b.addEventListener('click',()=>{view=b.dataset.v;lb.querySelectorAll('.seg button').forEach(x=>x.setAttribute('aria-pressed',x===b));layout();}));
+addEventListener('resize',()=>{if(!lb.hidden)layout()});
+addEventListener('keydown',e=>{if(e.key==='Escape'&&!lb.hidden)closeLb()});
+</script>
+
+</html>
