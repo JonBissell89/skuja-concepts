@@ -8,7 +8,7 @@
 <meta name="description" content="Walnut &amp; glass display cabinet. Glass shelves, brass half-moon pulls, live-edge base. Handmade by Skuja Design Studio in Wilmington, Vermont.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Newsreader:ital,opsz,wght@0,6..72,300..500;1,6..72,300..400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,600;1,300&family=Questrial&display=swap">
 <style>
 /* Layout: strict 12-column magazine grid, full-bleed photo spreads, condensed display type at poster scale, numbered project index */
 :root{
@@ -233,6 +233,32 @@ footer a:hover{text-decoration:underline}
   .process .steps{grid-template-columns:1fr;margin-top:48px}
   .hero h1{font-size:clamp(2.5rem,11vw,4rem)}
 }
+
+/* ── Brand typefaces: Kiona (display) + Century Gothic (text) ──
+   The real fonts are used when available: Century Gothic is installed on most Windows/Mac computers;
+   Kiona appears once its licensed web files are added (@font-face "Kiona"). Until then the close,
+   free stand-ins load from Google Fonts: Josefin Sans for Kiona, Questrial for Century Gothic. */
+:root{
+  --display:"Kiona","Josefin Sans","Century Gothic",sans-serif;
+  --serif:"Century Gothic","CenturyGothic","AppleGothic","Questrial",sans-serif;
+  --mono:"Century Gothic","CenturyGothic","AppleGothic","Questrial",sans-serif;
+}
+body{font-family:var(--serif);font-size:17px;line-height:1.65}
+*{font-stretch:100%!important}
+.d,.brand,.overlay li a,.rows .t,.work h2,.opt b,.vis b,.process .steps h3,.process .woods dt,.ref strong{font-weight:400!important;letter-spacing:.05em!important}
+.d{line-height:1.02!important}
+.hero h1{font-size:clamp(2.6rem,7vw,7.6rem)!important;line-height:1.04!important}
+.hero h1 .soft{font-family:var(--serif)!important;font-weight:400;font-style:normal;text-transform:none;letter-spacing:.01em;font-size:.7em}
+.mono{letter-spacing:.14em}
+.intro .text p,.sauna .quote,.maker .pull,.p-intro .lede p{font-weight:400!important}
+.pf-head h1,.p-hero h1{font-size:clamp(2.6rem,7.4vw,7.8rem)!important}
+.cta a.big span{font-size:clamp(3rem,9.5vw,10rem)!important}
+.index-head h2,.journal .jh h2{font-size:clamp(2.4rem,5.4vw,5.4rem)!important}
+.sauna h2{font-size:clamp(2.8rem,7vw,8rem)!important}
+.process .ph-head h2{font-size:clamp(2rem,5.6vw,5.8rem)!important}
+.d{overflow-wrap:anywhere}
+.hero h1,.p-hero h1{text-shadow:0 2px 28px rgba(0,0,0,.45)}
+.hero::after,.p-hero::after{background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.08) 30%,rgba(0,0,0,.2) 55%,rgba(0,0,0,.65))!important}
 
 /* ── Portfolio & project pages ── */
 .pf-head{padding:150px 0 40px}
