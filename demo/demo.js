@@ -34,6 +34,8 @@
   ];
 
   const DAY = 86400000, now = Date.now();
+  const TOUCH = matchMedia("(pointer: coarse)").matches || "ontouchstart" in window;
+  const NEXT = { new: "follow_up", follow_up: "in_process", in_process: "completed" };
   const iso = (d) => new Date(now + d * DAY).toISOString().slice(0, 10);
   const photo = (file, cap) => ({ src: `../img/${file}.webp`, cap });
   const seed = () => [
@@ -98,12 +100,17 @@
         <header class="a-col__head"><h2 id="col-${s.id}">${s.label}</h2><span class="a-col__count">${list.length}</span></header>
         <ul class="a-col__list" data-col="${s.id}">${list.map(cardHTML).join("") || `<li class="a-col__empty">${s.hint}</li>`}</ul></section>`;
     };
-    $("#view").innerHTML = `<p class="a-hint a-board-hint">Drag cards between columns (on a phone: press and hold, then drag). Or use a card’s <strong>Move</strong> button.</p>
+    $("#view").innerHTML = `<p class="a-hint a-board-hint">${TOUCH ? "Drag a card by its <strong>⠿</strong> handle, or tap <strong>→</strong> to move it to the next column." : "Drag cards between columns, or use <strong>→</strong> / <strong>Move</strong> on a card."}</p>
       <div class="a-board">${STAGES.filter((s) => !s.done).map((s) => col(s)).join("")}
       <div class="a-done"><p class="a-done__title">Done</p><div class="a-done__cols">${STAGES.filter((s) => s.done).map((s) => col(s, true)).join("")}</div></div></div>`;
     document.querySelectorAll(".a-col__list").forEach((ul) => Sortable.create(ul, {
-      group: "board", animation: 150, delay: 180, delayOnTouchOnly: true, filter: ".a-col__empty,.a-kcard__actions", preventOnFilter: false, ghostClass: "sortable-ghost",
-      onEnd: (e) => { const id = e.item.dataset.id; const to = e.to.dataset.col; const from = e.from.dataset.col;
+      group: "board", animation: 150, ghostClass: "sortable-ghost", chosenClass: "sortable-chosen",
+      handle: TOUCH ? ".a-grip" : undefined, // phones: grab the ⠿ handle (no long-press, page still scrolls normally)
+      filter: ".a-col__empty,.a-kcard__actions", preventOnFilter: false,
+      scroll: true, bubbleScroll: true, scrollSensitivity: TOUCH ? 150 : 90, scrollSpeed: TOUCH ? 26 : 22, forceAutoScrollFallback: TOUCH,
+      fallbackTolerance: 3, forceFallback: TOUCH, fallbackOnBody: true,
+      onStart: () => $(".a-board").classList.add("is-dragging"),
+      onEnd: (e) => { $(".a-board")?.classList.remove("is-dragging"); const id = e.item.dataset.id; const to = e.to.dataset.col; const from = e.from.dataset.col;
         const order = [...e.to.querySelectorAll("[data-id]")].map((li) => li.dataset.id);
         S.cards.sort((a, b) => (order.indexOf(a.id) + 1 || 999) - (order.indexOf(b.id) + 1 || 999));
         if (to !== from) move(id, to); else { persist(); } },
@@ -115,7 +122,7 @@
     const days = c.stageDays;
     return `<li class="a-kcard-wrap" data-id="${c.id}"><div class="a-kcard">
       <div class="a-kcard__body">
-        <div class="a-kcard__top">${c.status === "new" && !c.seen ? '<span class="a-dot" aria-label="Not opened yet"></span>' : ""}<strong class="a-kcard__name">${esc(c.name)}</strong><span class="a-muted a-small">${ago(c.created)}</span></div>
+        <div class="a-kcard__top"><span class="a-grip" aria-hidden="true" title="Drag">⠿</span>${c.status === "new" && !c.seen ? '<span class="a-dot" aria-label="Not opened yet"></span>' : ""}<strong class="a-kcard__name">${esc(c.name)}</strong><span class="a-muted a-small">${ago(c.created)}</span></div>
         <p class="a-kcard__what"><span class="a-kcard__cat">${esc(c.category)}${c.firm ? " · " + esc(c.firm) : ""}</span> ${esc(brief)}</p>
         <div class="a-kcard__meta"><span>${esc(c.budget)}</span><span class="pill pill--${c.assess[1]}">${c.assess[0]}</span><span class="a-muted">· ${esc(c.timeline)}</span></div>
         ${p ? `<div class="a-kcard__job"><div class="a-bar-track"><i style="width:${p.pct}%"></i></div><span class="a-small">${p.next ? "Next: " + esc(p.next) : "Build finished"}${c.job.due ? " · " + dueText(c.job.due) : ""}</span></div>` : ""}
@@ -124,6 +131,7 @@
       <div class="a-kcard__actions">
         <button type="button" class="a-btn a-btn--sm a-btn--primary" data-act="reply">Reply</button>
         <button type="button" class="a-btn a-btn--sm" data-act="open">Open</button>
+        ${NEXT[c.status] ? `<button type="button" class="a-btn a-btn--sm a-next" data-moveto="${NEXT[c.status]}">→ ${LABEL[NEXT[c.status]].replace("Project ", "")}</button>` : ""}
         <div class="a-movemenu"><button type="button" class="a-btn a-btn--sm" data-act="menu" aria-expanded="false">Move</button></div>
       </div></div></li>`;
   }
